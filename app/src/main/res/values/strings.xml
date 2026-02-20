@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CarrerasTaxi</string>
+
+    <!-- Pantalla Principal -->
+    <string name="titulo_principal">🚖 TAXÍMETRO EN VIVO</string>
+    <string name="btn_historial">📊 Historial</string>
+    <string name="label_tiempo">⏱ Tiempo</string>
+    <string name="label_velocidad">⚡ Velocidad</string>
+    <string name="label_distancia">📏 Distancia:</string>
+    <string name="label_gasolina">⛽ Gasolina:</string>
+    <string name="label_monto">💰 Monto:</string>
+    <string name="label_ganancia">💵 GANANCIA NETA</string>
+    <string name="btn_iniciar">▶ INICIAR</string>
+    <string name="btn_pausar">⏸ PAUSAR</string>
+    <string name="btn_reanudar">▶ REANUDAR</string>
+    <string name="btn_finalizar">⏹ FINALIZAR</string>
+
+    <!-- Pantalla Historial -->
+    <string name="titulo_historial">📊 HISTORIAL DE CARRERAS</string>
+    <string name="label_total_hoy">📅 HOY:</string>
+    <string name="label_total_mes">📊 MES ACTUAL:</string>
+    <string name="label_total_anio">📈 AÑO:</string>
+
+    <!-- Mensajes -->
+    <string name="msg_carrera_iniciada">✅ Carrera iniciada</string>
+    <string name="msg_carrera_pausada">⏸ Carrera pausada</string>
+    <string name="msg_carrera_reanudada">▶ Carrera reanudada</string>
+    <string name="msg_carrera_guardada">✅ Carrera guardada correctamente</string>
+    <string name="msg_permiso_concedido">✅ Permiso de ubicación concedido</string>
+    <string name="msg_permiso_denegado">❌ Permiso de ubicación denegado</string>
+
+    <!-- Formato de datos -->
+    <string name="formato_km">%.2f km</string>
+    <string name="formato_bs">%.2f Bs</string>
+    <string name="formato_kmh">%.0f km/h</string>
+    <string name="formato_tiempo">%02d:%02d:%02d</string>
+
+    <!-- Valores por defecto -->
+    <string name="valor_defecto_tiempo">00:00:00</string>
+    <string name="valor_defecto_velocidad">0 km/h</string>
+    <string name="valor_defecto_distancia">0.00 km</string>
+    <string name="valor_defecto_gasolina">0.00 Bs</string>
+    <string name="valor_defecto_ganancia">0.00 Bs</string>
+    <string name="valor_defecto_monto">0.00</string>
+
+    <!-- Formas de pago -->
+    <string name="forma_pago_efectivo">Efectivo</string>
+    <string name="forma_pago_tarjeta">Tarjeta</string>
+    <string name="forma_pago_apps">Apps</string>
+</resources>

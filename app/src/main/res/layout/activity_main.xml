@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_light"
+    tools:context=".ui.MainActivity">
+
+    <!-- Barra superior con título -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="@color/primary"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="🚖 TAXÍMETRO EN VIVO"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnHistorial"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:paddingHorizontal="16dp"
+            android:text="📊 Historial"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/btn_rounded"
+            android:backgroundTint="@color/primary_dark" />
+    </LinearLayout>
+
+    <!-- Mapa MapLibre -->
+    <org.maplibre.android.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:visibility="visible" />
+
+    <!-- Información en vivo -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@color/white">
+
+        <!-- Tiempo y Velocidad -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/card_background"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⏱ Tiempo"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_secondary" />
+
+                <TextView
+                    android:id="@+id/tvTiempo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00:00:00"
+                    android:textSize="28sp"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⚡ Velocidad"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_secondary" />
+
+                <TextView
+                    android:id="@+id/tvVelocidad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 km/h"
+                    android:textSize="28sp"
+                    android:textColor="@color/warning"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Distancia, Gasolina, Monto -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp">
+
+            <!-- Distancia -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="📏 Distancia:"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary" />
+
+                <TextView
+                    android:id="@+id/tvDistancia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00 km"
+                    android:textSize="18sp"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Gasolina -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="⛽ Gasolina:"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary" />
+
+                <TextView
+                    android:id="@+id/tvGasolina"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00 Bs"
+                    android:textSize="18sp"
+                    android:textColor="@color/secondary"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Monto Cobrado -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="💰 Monto:"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary" />
+
+                <EditText
+                    android:id="@+id/etMonto"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:inputType="numberDecimal"
+                    android:hint="0.00"
+                    android:textSize="16sp"
+                    android:textColor="@color/primary"
+                    android:textAlignment="center"
+                    android:background="@drawable/input_background"
+                    android:padding="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Bs"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Ganancia (destacada) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_ganancia"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💵 GANANCIA NETA"
+                android:textSize="14sp"
+                android:textColor="@color/success_dark"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvGanancia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00 Bs"
+                android:textSize="32sp"
+                android:textColor="@color/success"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- Botones de control -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:spacing="8dp">
+
+            <Button
+                android:id="@+id/btnIniciar"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="▶ INICIAR"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:background="@drawable/btn_success" />
+
+            <Button
+                android:id="@+id/btnPausar"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="⏸ PAUSAR"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:background="@drawable/btn_warning"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btnFinalizar"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="⏹ FINALIZAR"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:background="@drawable/btn_danger"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

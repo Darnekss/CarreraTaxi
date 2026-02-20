@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/card_background"
+    android:padding="16dp"
+    android:layout_marginBottom="12dp">
+
+    <!-- Fecha y hora -->
+    <TextView
+        android:id="@+id/tvFechaHora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20 FEB 2025 14:30 - 15:45"
+        android:textSize="14sp"
+        android:textColor="@color/text_primary"
+        android:textStyle="bold" />
+
+    <!-- Duración -->
+    <TextView
+        android:id="@+id/tvDuracion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="⏱ 01:15:00"
+        android:textSize="12sp"
+        android:textColor="@color/text_secondary"
+        android:layout_marginTop="4dp" />
+
+    <!-- Separador -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/border_light"
+        android:layout_marginVertical="8dp" />
+
+    <!-- Distancia -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="6dp">
+
+        <TextView
+            android:id="@+id/tvDistancia"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="📏 45.32 km"
+            android:textSize="14sp"
+            android:textColor="@color/primary"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvGanancia"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="💵 Ganancia: 84.58 Bs"
+            android:textSize="14sp"
+            android:textColor="@color/success"
+            android:textStyle="bold"
+            android:textAlignment="textEnd" />
+    </LinearLayout>
+
+    <!-- Forma de pago -->
+    <TextView
+        android:id="@+id/tvFormaPago"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="💳 Efectivo"
+        android:textSize="12sp"
+        android:textColor="@color/text_secondary"
+        android:layout_marginTop="6dp" />
+
+</LinearLayout>

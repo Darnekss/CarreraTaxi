@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Permisos de ubicación -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Permisos de red e internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Permisos de servicio en primer plano -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+
+    <!-- Permiso para evitar que duerma el dispositivo -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CarrerasTaxi">
+
+        <!-- MainActivity: Pantalla principal del taxímetro -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- HistorialActivity: Pantalla del historial de carreras -->
+        <activity
+            android:name=".ui.HistorialActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!-- TaxiMeterService: Servicio en primer plano para GPS -->
+        <service
+            android:name=".service.TaxiMeterService"
+            android:foregroundServiceType="location"
+            android:exported="false" />
+
+    </application>
+
+</manifest>
