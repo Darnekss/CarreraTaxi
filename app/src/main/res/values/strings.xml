@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CarrerasTaxi</string>
+    <string name="app_name">TAXBolivia</string>
 
     <!-- Pantalla Principal -->
     <string name="titulo_principal">🚖 TAXÍMETRO EN VIVO</string>
@@ -34,7 +34,7 @@
     <string name="formato_km">%.2f km</string>
     <string name="formato_bs">%.2f Bs</string>
     <string name="formato_kmh">%.0f km/h</string>
-    <string name="formato_tiempo">%02d:%02d:%02d</string>
+    <string name="formato_tiempo" formatted="false">%02d:%02d:%02d</string>
 
     <!-- Valores por defecto -->
     <string name="valor_defecto_tiempo">00:00:00</string>

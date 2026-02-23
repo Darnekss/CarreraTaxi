@@ -38,6 +38,12 @@ interface CarreraDao {
     fun getAllCarreras(): Flow<List<CarreraEntity>>
 
     /**
+     * Obtiene todas las carreras con limite
+     */
+    @Query("SELECT * FROM carreras ORDER BY timestamp DESC LIMIT :limit")
+    fun getAllCarrerasLimited(limit: Int): Flow<List<CarreraEntity>>
+
+    /**
      * Obtiene una carrera por ID
      */
     @Query("SELECT * FROM carreras WHERE id = :id")
@@ -48,6 +54,12 @@ interface CarreraDao {
      */
     @Query("SELECT * FROM carreras WHERE fecha = :fecha ORDER BY timestamp DESC")
     fun getCarrerasByDate(fecha: String): Flow<List<CarreraEntity>>
+
+    /**
+     * Obtiene carreras de un dia especifico con limite
+     */
+    @Query("SELECT * FROM carreras WHERE fecha = :fecha ORDER BY timestamp DESC LIMIT :limit")
+    fun getCarrerasByDateLimited(fecha: String, limit: Int): Flow<List<CarreraEntity>>
 
     /**
      * Obtiene suma total de ganancias por fecha
@@ -78,6 +90,36 @@ interface CarreraDao {
      */
     @Query("DELETE FROM carreras WHERE fecha < :fechaLimite")
     suspend fun deleteOldCarreras(fechaLimite: String)
+
+    /**
+     * Obtiene carreras en un rango de fechas
+     */
+    @Query("SELECT * FROM carreras WHERE fecha BETWEEN :fechaInicio AND :fechaFin ORDER BY timestamp DESC")
+    fun getCarrerasByRange(fechaInicio: String, fechaFin: String): kotlinx.coroutines.flow.Flow<List<CarreraEntity>>
+
+    /**
+     * Obtiene carreras en un rango de fechas con limite
+     */
+    @Query("SELECT * FROM carreras WHERE fecha BETWEEN :fechaInicio AND :fechaFin ORDER BY timestamp DESC LIMIT :limit")
+    fun getCarrerasByRangeLimited(fechaInicio: String, fechaFin: String, limit: Int): kotlinx.coroutines.flow.Flow<List<CarreraEntity>>
+
+    /**
+     * Elimina todas las carreras
+     */
+    @Query("DELETE FROM carreras")
+    suspend fun deleteAllCarreras()
+
+    /**
+     * Elimina carreras en un rango de fechas
+     */
+    @Query("DELETE FROM carreras WHERE fecha BETWEEN :fechaInicio AND :fechaFin")
+    suspend fun deleteCarrerasByRange(fechaInicio: String, fechaFin: String)
+
+    /**
+     * Elimina carreras de un dia especifico
+     */
+    @Query("DELETE FROM carreras WHERE fecha = :fecha")
+    suspend fun deleteCarrerasByDate(fecha: String)
 
     /**
      * Obtiene estadísticas del mes actual

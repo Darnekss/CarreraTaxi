@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="white">#FFFFFF</color>
+
     <!-- Colores Primarios -->
     <color name="primary">#2196F3</color>
     <color name="primary_dark">#1976D2</color>
     <color name="primary_light">#BBDEFB</color>
+
 
     <!-- Colores Secundarios -->
     <color name="secondary">#FF9800</color>
@@ -27,8 +30,18 @@
     <color name="background_light">#F5F5F5</color>
     <color name="background_white">#FFFFFF</color>
     <color name="background_card">#FAFAFA</color>
+    <color name="background_dark">#0B1020</color>
+    <color name="background_card_dark">#111B2E</color>
 
     <!-- Colores para bordes -->
     <color name="border_light">#E0E0E0</color>
     <color name="border_dark">#BDBDBD</color>
+
+    <!-- Colores neon (sutil) -->
+    <color name="neon_blue">#4FC3FF</color>
+    <color name="neon_blue_soft">#2A79A8</color>
+    <color name="neon_green">#26D9A5</color>
+    <color name="neon_red">#FF5D5D</color>
+    <color name="text_neon">#BFE9FF</color>
+    <color name="text_muted">#8AA3C4</color>
 </resources>

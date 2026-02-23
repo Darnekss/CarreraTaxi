@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@color/background_dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TaxiControl Bolivia"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_neon" />
+
+        <TextView
+            android:id="@+id/tvEstadoChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            android:text="LIBRE"
+            android:textStyle="bold"
+            android:textColor="@color/background_dark"
+            android:background="@drawable/tag_state_blue" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/panelCarreraActiva"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/card_neon"
+        android:padding="12dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Carrera actual"
+            android:textStyle="bold"
+            android:textColor="@color/text_neon"
+            android:textSize="16sp" />
+
+        <TextView android:id="@+id/tvPanelDistancia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Distancia: --"
+            android:textColor="@color/text_muted"/>
+
+        <TextView android:id="@+id/tvPanelTiempo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tiempo: --"
+            android:textColor="@color/text_muted"/>
+
+        <TextView android:id="@+id/tvPanelMonto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Monto: --"
+            android:textColor="@color/neon_green"
+            android:textStyle="bold"/>
+
+        <TextView android:id="@+id/tvPanelVelocidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Velocidad: --"
+            android:textColor="@color/text_muted"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+
+        <org.osmdroid.views.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/btnCenter"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:text="📍"
+            android:background="@drawable/btn_neon_blue"
+            android:textColor="@color/text_neon"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="12dp" />
+
+        <Button
+            android:id="@+id/btnEmergency"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:text="SOS"
+            android:background="@drawable/btn_neon_red"
+            android:textColor="@color/text_neon"
+            android:layout_gravity="bottom|start"
+            android:layout_margin="12dp" />
+
+        <Button
+            android:id="@+id/btnLock"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:text="🔒"
+            android:background="@drawable/btn_neon_blue"
+            android:textColor="@color/text_neon"
+            android:layout_gravity="top|end"
+            android:layout_margin="12dp" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvVelocidadMapa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Velocidad: -- km/h"
+        android:textColor="@color/text_muted"
+        android:layout_marginBottom="8dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressMeta"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:progress="0"
+        android:max="100"
+        android:progressTint="@color/neon_green"
+        android:backgroundTint="@color/text_muted"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/tvMeta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Meta: 0 / 0 Bs"
+        android:textColor="@color/text_muted"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/btnMain"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:text="INICIAR CARRERA"
+        android:textColor="@color/text_neon"
+        android:textStyle="bold"
+        android:background="@drawable/btn_neon_blue"
+        android:layout_marginBottom="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp">
+
+        <TextView
+            android:id="@+id/tvKmHoy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="KM total: 0.0"
+            android:textColor="@color/text_neon" />
+
+        <TextView
+            android:id="@+id/tvGananciaHoy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ganancia: 0 Bs"
+            android:textColor="@color/neon_green" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/card_neon"
+        android:padding="10dp"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Resumen del día"
+            android:textColor="@color/text_neon"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/tvKmConPasajero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="KM con pasajero: 0.0"
+            android:textColor="@color/text_muted"/>
+        <TextView
+            android:id="@+id/tvKmSinPasajero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="KM sin pasajero: 0.0"
+            android:textColor="@color/text_muted"/>
+        <TextView
+            android:id="@+id/tvTiempoTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tiempo total: 00:00:00"
+            android:textColor="@color/text_muted"/>
+        <TextView
+            android:id="@+id/tvTiempoCon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tiempo con pasajero: 00:00:00"
+            android:textColor="@color/text_muted"/>
+        <TextView
+            android:id="@+id/tvTiempoSin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tiempo libre: 00:00:00"
+            android:textColor="@color/text_muted"/>
+        <TextView
+            android:id="@+id/tvGasolina"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gasolina estimada: 0.0 Bs"
+            android:textColor="@color/text_muted"/>
+    </LinearLayout>
+
+</LinearLayout>

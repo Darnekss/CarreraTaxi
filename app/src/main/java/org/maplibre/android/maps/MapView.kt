@@ -1,2 +1,3 @@
-package org.maplibre.android.maps 
+package org.maplibre.android.maps
 
+annotation class MapView

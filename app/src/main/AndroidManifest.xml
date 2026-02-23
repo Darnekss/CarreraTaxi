@@ -8,19 +8,29 @@
     <!-- Permisos de red e internet -->
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- Permisos de almacenamiento para caché de tiles del mapa -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
     <!-- Permisos de servicio en primer plano -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
-
+    
     <!-- Permiso para evitar que duerma el dispositivo -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CarrerasTaxi">
+        android:theme="@style/Theme.CarrerasTaxi"
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true">
 
         <!-- MainActivity: Pantalla principal del taxímetro -->
         <activity
@@ -38,10 +48,18 @@
             android:name=".ui.HistorialActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.StatsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <!-- TaxiMeterService: Servicio en primer plano para GPS -->
         <service
             android:name=".service.TaxiMeterService"
+            android:foregroundServiceType="location"
+            android:exported="false" />
+        <service
+            android:name=".service.LocationService"
             android:foregroundServiceType="location"
             android:exported="false" />
 

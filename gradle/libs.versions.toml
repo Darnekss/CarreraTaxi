@@ -1,12 +1,13 @@
 [versions]
 agp = "8.4.1"
-coreKtx = "1.10.1"
+coreKtx = "1.12.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.6.1"
+lifecycleRuntimeKtx = "2.7.0"
 kotlin = "1.9.23"
-maplibre = "12.3.1"
+maplibre = "10.1.0"
+mapboxGeojson = "6.1.0"
 location = "21.3.0"
 appcompat = "1.6.1"
 
@@ -17,6 +18,7 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 maplibre-sdk = { group = "org.maplibre.gl", name = "android-sdk", version.ref = "maplibre" }
+mapbox-geojson = { group = "com.mapbox.geojson", name = "geojson", version.ref = "mapboxGeojson" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "location" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 

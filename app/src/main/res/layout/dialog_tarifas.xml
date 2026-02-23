@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bandera (Bs)"
+            android:textColor="@color/text_primary" />
+
+        <EditText
+            android:id="@+id/etTarifaBandera"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:inputType="numberDecimal"
+            android:background="@drawable/input_neon"
+            android:paddingHorizontal="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Por km (Bs)"
+            android:textColor="@color/text_primary" />
+
+        <EditText
+            android:id="@+id/etTarifaKm"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:inputType="numberDecimal"
+            android:background="@drawable/input_neon"
+            android:paddingHorizontal="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Por minuto (Bs)"
+            android:textColor="@color/text_primary" />
+
+        <EditText
+            android:id="@+id/etTarifaMin"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:inputType="numberDecimal"
+            android:background="@drawable/input_neon"
+            android:paddingHorizontal="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Recargo nocturno (%)"
+            android:textColor="@color/text_primary" />
+
+        <EditText
+            android:id="@+id/etRecargoNoche"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:inputType="numberDecimal"
+            android:background="@drawable/input_neon"
+            android:paddingHorizontal="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Recargo festivo (%)"
+            android:textColor="@color/text_primary" />
+
+        <EditText
+            android:id="@+id/etRecargoFestivo"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:inputType="numberDecimal"
+            android:background="@drawable/input_neon"
+            android:paddingHorizontal="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Festivos (MM-dd, separados por coma)"
+            android:textColor="@color/text_primary" />
+
+        <EditText
+            android:id="@+id/etFestivos"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/input_neon"
+            android:paddingHorizontal="12dp"
+            android:hint="01-01,05-01,08-06,12-25" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="URL de subida (backup nube)"
+            android:textColor="@color/text_primary" />
+
+        <EditText
+            android:id="@+id/etUploadUrl"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/input_neon"
+            android:paddingHorizontal="12dp"
+            android:hint="https://example.com/upload" />
+
+        <Button
+            android:id="@+id/btnTestUpload"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:text="Probar subida"
+            android:background="@drawable/btn_neon_blue"
+            android:textColor="@color/text_neon" />
+
+        <CheckBox
+            android:id="@+id/cbAutoBackup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Backup automático al guardar carrera"
+            android:textColor="@color/text_primary" />
+    </LinearLayout>
+</ScrollView>

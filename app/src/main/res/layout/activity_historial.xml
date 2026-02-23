@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_light"
+    android:background="@color/background_dark"
     tools:context=".ui.HistorialActivity">
 
     <!-- Barra superior -->
@@ -12,39 +12,67 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:background="@color/primary"
+        android:background="@color/background_card_dark"
         android:gravity="center_vertical"
         android:paddingHorizontal="16dp">
 
         <Button
             android:id="@+id/btnAtras"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:text="←"
-            android:textSize="24sp"
-            android:textColor="@android:color/white"
-            android:background="@drawable/btn_rounded"
-            android:backgroundTint="@color/primary_dark" />
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:text="&lt;"
+            android:textSize="20sp"
+            android:textColor="@color/text_neon"
+            android:background="@drawable/btn_neon_blue" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="16dp"
-            android:text="📊 HISTORIAL DE CARRERAS"
+            android:text="HISTORIAL DE CARRERAS"
             android:textSize="18sp"
-            android:textColor="@android:color/white"
+            android:textColor="@color/text_neon"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnActualizarHistorial"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:text="🔄"
-            android:textSize="20sp"
-            android:textColor="@android:color/white"
-            android:background="@drawable/btn_rounded"
-            android:backgroundTint="@color/primary_dark" />
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:text="R"
+            android:textSize="16sp"
+            android:textColor="@color/text_neon"
+            android:background="@drawable/btn_neon_blue"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnExportPdf"
+            android:layout_width="72dp"
+            android:layout_height="44dp"
+            android:text="PDF"
+            android:textSize="14sp"
+            android:textColor="@color/text_neon"
+            android:background="@drawable/btn_neon_blue"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnExportCsv"
+            android:layout_width="72dp"
+            android:layout_height="44dp"
+            android:text="CSV"
+            android:textSize="14sp"
+            android:textColor="@color/text_neon"
+            android:background="@drawable/btn_neon_blue"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnBorrarTodo"
+            android:layout_width="72dp"
+            android:layout_height="44dp"
+            android:text="DEL"
+            android:textSize="14sp"
+            android:textColor="@color/text_neon"
+            android:background="@drawable/btn_neon_red" />
     </LinearLayout>
 
     <!-- Resumen de ganancias -->
@@ -60,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:background="@drawable/card_background"
+            android:background="@drawable/card_neon"
             android:padding="12dp"
             android:gravity="center">
 
@@ -68,9 +96,9 @@
                 android:id="@+id/tvTotalHoy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="📅 HOY: 0.00 Bs"
+                android:text="HOY: 0.00 Bs"
                 android:textSize="12sp"
-                android:textColor="@color/primary"
+                android:textColor="@color/text_neon"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -79,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:background="@drawable/card_background"
+            android:background="@drawable/card_neon"
             android:padding="12dp"
             android:gravity="center">
 
@@ -87,9 +115,9 @@
                 android:id="@+id/tvTotalMes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="📊 MES: 0.00 Bs"
+                android:text="MES: 0.00 Bs"
                 android:textSize="12sp"
-                android:textColor="@color/secondary"
+                android:textColor="@color/text_neon"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -98,7 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:background="@drawable/card_background"
+            android:background="@drawable/card_neon"
             android:padding="12dp"
             android:gravity="center">
 
@@ -106,12 +134,130 @@
                 android:id="@+id/tvTotalAnio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="📈 AÑO: 0.00 Bs"
+                android:text="ANO: 0.00 Bs"
                 android:textSize="12sp"
-                android:textColor="@color/success"
+                android:textColor="@color/text_neon"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
+
+    <!-- Busqueda -->
+    <EditText
+        android:id="@+id/etBusqueda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/input_neon"
+        android:hint="Buscar fecha, pago, distancia, ganancia"
+        android:padding="12dp"
+        android:textColor="@color/text_neon"
+        android:textColorHint="@color/text_muted" />
+
+    <!-- Filtros -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnFiltroHoy"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:text="Hoy"
+            android:textColor="@color/text_neon"
+            android:background="@drawable/btn_neon_blue" />
+
+        <Button
+            android:id="@+id/btnFiltro7Dias"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:text="7 dias"
+            android:textColor="@color/text_neon"
+            android:background="@drawable/btn_neon_blue" />
+
+        <Button
+            android:id="@+id/btnFiltroMes"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:text="Mes"
+            android:textColor="@color/text_neon"
+            android:background="@drawable/btn_neon_blue" />
+
+        <Button
+            android:id="@+id/btnFiltroTodo"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="Todo"
+            android:textColor="@color/text_neon"
+            android:background="@drawable/btn_neon_blue" />
+    </LinearLayout>
+
+    <!-- Estadisticas -->
+    <TextView
+        android:id="@+id/tvEstadisticas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/card_neon"
+        android:padding="12dp"
+        android:text="Estadisticas"
+        android:textColor="@color/text_neon"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etPrecioLitro"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/input_neon"
+            android:hint="Precio gasolina/l"
+            android:inputType="numberDecimal"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/text_neon"
+            android:textColorHint="@color/text_muted" />
+
+        <EditText
+            android:id="@+id/etKmPorLitro"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/input_neon"
+            android:hint="Rendimiento km/l"
+            android:inputType="numberDecimal"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/text_neon"
+            android:textColorHint="@color/text_muted" />
+    </LinearLayout>
+
+    <!-- Grafico semanal -->
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chartSemanal"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/card_neon" />
 
     <!-- Lista de carreras -->
     <androidx.recyclerview.widget.RecyclerView

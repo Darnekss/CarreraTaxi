@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Estadisticas del dia"
+            android:textColor="@color/text_neon"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvStatKmTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="KM total: --"
+            android:textColor="@color/text_neon" />
+
+        <TextView
+            android:id="@+id/tvStatKmCon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="KM con pasajero: --"
+            android:textColor="@color/text_muted" />
+
+        <TextView
+            android:id="@+id/tvStatKmSin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="KM sin pasajero: --"
+            android:textColor="@color/text_muted" />
+
+        <TextView
+            android:id="@+id/tvStatTiempoTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tiempo trabajado: --"
+            android:textColor="@color/text_neon"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/tvStatTiempoPasajero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tiempo con pasajero: --"
+            android:textColor="@color/text_muted" />
+
+        <TextView
+            android:id="@+id/tvStatTiempoLibre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tiempo libre: --"
+            android:textColor="@color/text_muted" />
+
+        <TextView
+            android:id="@+id/tvStatBruta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ganancia bruta: --"
+            android:textColor="@color/text_neon"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/tvStatGas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gasolina: --"
+            android:textColor="@color/text_muted" />
+
+        <TextView
+            android:id="@+id/tvStatNeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ganancia neta: --"
+            android:textColor="@color/neon_green" />
+
+        <Button
+            android:id="@+id/btnOpenStats"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Abrir dashboard diario"
+            android:textColor="@color/text_neon"
+            android:textStyle="bold"
+            android:background="@drawable/btn_neon_blue"
+            android:layout_marginTop="12dp" />
+    </LinearLayout>
+</ScrollView>

@@ -1,7 +1,7 @@
 package com.example.carrerastaxi.utils
 
-import org.maplibre.android.geometry.LatLng
-import com.google.android.gms.location.Location
+import org.osmdroid.util.GeoPoint
+import android.location.Location
 import kotlin.math.*
 
 /**
@@ -160,7 +160,7 @@ object DistanceUtils {
      * Convierte LatLng a String para guardar en BD
      * Formato: lat,lng|lat,lng|...
      */
-    fun latLngListToString(points: List<LatLng>): String {
+    fun latLngListToString(points: List<GeoPoint>): String {
         return points.joinToString("|") { "${it.latitude},${it.longitude}" }
     }
 
@@ -168,13 +168,13 @@ object DistanceUtils {
      * Convierte String a lista de LatLng
      * Inverso de latLngListToString
      */
-    fun stringToLatLngList(pointsString: String): List<LatLng> {
+    fun stringToLatLngList(pointsString: String): List<GeoPoint> {
         if (pointsString.isEmpty()) return emptyList()
         return pointsString.split("|").mapNotNull { point ->
             val parts = point.split(",")
             if (parts.size == 2) {
                 try {
-                    LatLng(parts[0].toDouble(), parts[1].toDouble())
+                    GeoPoint(parts[0].toDouble(), parts[1].toDouble())
                 } catch (e: NumberFormatException) {
                     null
                 }

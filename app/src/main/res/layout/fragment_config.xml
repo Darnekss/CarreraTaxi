@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Configuracion"
+            android:textColor="@color/text_neon"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etTarifaBase"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Tarifa base (Bs)"
+            android:inputType="numberDecimal"
+            android:background="@drawable/input_neon"
+            android:padding="8dp"
+            android:textColor="@color/text_neon"
+            android:textColorHint="@color/text_muted" />
+
+        <EditText
+            android:id="@+id/etPrecioKm"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Precio por km"
+            android:inputType="numberDecimal"
+            android:background="@drawable/input_neon"
+            android:padding="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/text_neon"
+            android:textColorHint="@color/text_muted" />
+
+        <EditText
+            android:id="@+id/etPrecioMin"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Precio por minuto"
+            android:inputType="numberDecimal"
+            android:background="@drawable/input_neon"
+            android:padding="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/text_neon"
+            android:textColorHint="@color/text_muted" />
+
+        <EditText
+            android:id="@+id/etPrecioGas"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Precio gasolina"
+            android:inputType="numberDecimal"
+            android:background="@drawable/input_neon"
+            android:padding="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/text_neon"
+            android:textColorHint="@color/text_muted" />
+
+        <EditText
+            android:id="@+id/etKmPorLitro"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Km por litro"
+            android:inputType="numberDecimal"
+            android:background="@drawable/input_neon"
+            android:padding="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/text_neon"
+            android:textColorHint="@color/text_muted" />
+
+        <Switch
+            android:id="@+id/switchSonido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sonido"
+            android:textColor="@color/text_neon" />
+
+        <Switch
+            android:id="@+id/switchVibra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vibracion"
+            android:textColor="@color/text_neon" />
+
+        <Switch
+            android:id="@+id/switchAuto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Modo automático (iniciar carrera al mover)"
+            android:textColor="@color/text_neon" />
+
+        <EditText
+            android:id="@+id/etMetaDiaria"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Meta diaria (Bs)"
+            android:inputType="numberDecimal"
+            android:background="@drawable/input_neon"
+            android:padding="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/text_neon"
+            android:textColorHint="@color/text_muted" />
+
+        <Button
+            android:id="@+id/btnGuardarConfig"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Guardar"
+            android:textColor="@color/text_neon"
+            android:textStyle="bold"
+            android:background="@drawable/btn_neon_blue"
+            android:layout_marginTop="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/btnIniciarJornada"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="Iniciar jornada"
+                android:textColor="@color/text_neon"
+                android:textStyle="bold"
+                android:background="@drawable/btn_neon_green" />
+
+            <Button
+                android:id="@+id/btnFinalizarJornada"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="Finalizar jornada"
+                android:textColor="@color/text_neon"
+                android:textStyle="bold"
+                android:background="@drawable/btn_neon_red"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvEstadoJornada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jornada: Activa"
+            android:textColor="@color/text_muted"
+            android:layout_marginTop="4dp"/>
+
+        <Button
+            android:id="@+id/btnReiniciarJornada"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Reiniciar jornada"
+            android:textColor="@color/text_neon"
+            android:textStyle="bold"
+            android:background="@drawable/btn_neon_red"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+</ScrollView>
