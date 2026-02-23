@@ -16,6 +16,7 @@
     <!-- Permisos de servicio en primer plano -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     
     <!-- Permiso para evitar que duerma el dispositivo -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -62,6 +63,15 @@
             android:name=".service.LocationService"
             android:foregroundServiceType="location"
             android:exported="false" />
+
+        <receiver
+            android:name=".service.BootReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
     </application>
 

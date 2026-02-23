@@ -1,24 +1,26 @@
 TAXBolivia - Estructura y funciones (resumen breve)
-Fecha: 2026-02-23
+Fecha: 2026-02-23 (actualizado tras refactor a servicio + VM)
 
 Estructura principal (src):
 - ui/MainActivity.kt: arranca LocationService y maneja bottom navigation (Inicio, Estadísticas, Historial, Configuración).
-- ui/fragments/HomeFragment.kt: pantalla Inicio. Mapa (osmdroid), botón único iniciar/finalizar carrera, panel flotante, meta diaria, resumen km/tiempos/ganancias, SOS, bloqueo pantalla, recentrar, capa de tráfico, auto-start opcional.
+- ui/fragments/HomeFragment.kt: pantalla Inicio. Mapa (osmdroid), botón único iniciar/finalizar carrera (long press vía notificación o botón), panel flotante, meta diaria, resumen km/tiempos/ganancias, SOS, bloqueo pantalla, recentrar, capa de tráfico, auto-start opcional. Escucha snapshots del servicio (broadcast) vía HomeViewModel.
 - ui/fragments/StatsFragment.kt + ui/StatsActivity.kt: muestra cards diarias y gráfico de neta diaria (MPAndroidChart).
 - ui/fragments/HistorialFragment.kt: lista días (DailyStats), exportar CSV/PDF.
 - ui/fragments/ConfigFragment.kt: tarifas (base/km/min), gasolina (precio, km/L), sonido/vibra, auto-start, meta diaria, control de jornada (iniciar/finalizar), reinicio jornada.
-- managers/TripManager.kt: motor de cálculo híbrido (tarifa base 7 Bs, tiempo/distancia según velocidad, tiempos detenido/movimiento, km con/sin pasajero), estados LIBRE/CON_PASAJERO/ESPERANDO/PAUSADO/FINALIZADO, snapshot diario, parada automática.
+- ui/viewmodels/HomeViewModel.kt: expone snapshot recibido del servicio.
+- managers/TripManager.kt: motor de cálculo híbrido (tarifa base 7 Bs, tiempo/distancia según velocidad, tiempos detenido/movimiento, km con/sin pasajero), estados LIBRE/CON_PASAJERO/ESPERANDO/PAUSADO/FINALIZADO, snapshot diario, parada automática, rehidratación desde sesión.
 - managers/AppSession.kt: singleton de TripManager para persistir estado entre fragments.
 - managers/FuelManager.kt, TrafficManager.kt, StatsManager.kt.
-- service/LocationService.kt: foreground START_STICKY, GPS cada 1s, filtros (accuracy>20m, saltos, velocidad irreal), evita puntos cacheados, notificación.
-- data/Room: TripEntity, DailyStatsEntity, TrafficEntity; DAOs (trips, daily_stats con rangos y reset, traffic con fetch por tiempo); AppDatabase v2.
+- service/LocationService.kt: foreground START_STICKY, GPS cada 1s, filtros (accuracy>20m, saltos, velocidad irreal), evita puntos cacheados, notificación viva con acción “Finalizar”, emite broadcast ACTION_SNAPSHOT, calcula tarifa/estado en el servicio.
+- service/BootReceiver.kt: arranca LocationService tras reinicio si jornada activa/auto-start.
+- data/Room: TripEntity, DailyStatsEntity, TrafficEntity, SessionStateEntity; DAOs (trips, daily_stats con rangos y reset, traffic con fetch por tiempo, sessionDao); AppDatabase v3 (fallback destructivo por ahora).
 - utils/Prefs.kt: configuración persistente (tarifas, gasolina, sonido, vibra, auto-start, meta, jornada activa).
 - layouts: activity_main, fragment_home (mapa + resumen + panel), fragment_stats, fragment_historial + item_historial, fragment_config, activity_stats.
 
 Funciones clave:
-- Jornada: configurable en Configuración (iniciar/finalizar). Mientras activa, registra km/tiempo. Finalizar guarda snapshot diario y resetea contadores.
-- Carrera: botón único con long-press para finalizar, vibración opcional, tarifa base 7 Bs + híbrido por velocidad; panel flotante con distancia/tiempo/monto/velocidad; marcadores inicio/fin; rutas gris (libre) / verde (con pasajero).
-- Persistencia: autosave cada 4s a Room (km, tiempos, bruta, gasolina, neta). TripManager singleton evita perder estado al cambiar pestañas.
+- Jornada: configurable en Configuración (iniciar/finalizar). Mientras activa, registra km/tiempo. Finalizar guarda snapshot diario y resetea contadores. Estado jornada persiste en Prefs y SessionState.
+- Carrera: botón único (UI o notificación). Tarifas base 7 Bs + híbrido por velocidad; panel flotante; marcadores inicio/fin; rutas gris/verde.
+- Persistencia: autosave cada 4s a Room (DailyStats + SessionState). Rehidratación automática de sesión (jornada/carrera) al abrir.
 - Servicio GPS: foreground sticky; no se detiene al cerrar Home; filtros de precisión/saltos; overlay de ubicación y auto-follow inicial.
 - Tráfico: puntos <10 km/h se guardan y se pintan en mapa (rojo <5, amarillo 5–10) de la última hora.
 - Meta diaria: barra de progreso y texto en Inicio.
@@ -27,8 +29,11 @@ Funciones clave:
 - Dashboard: cards de km/tiempo/bruta/gas/neta y gráfico de neta diaria.
 - SOS: botón guarda último punto como evento y vibra.
 - Bloqueo: botón 🔒 deshabilita acciones del botón principal para evitar toques.
+- Notificación viva: muestra estado/km/bs y acción “Finalizar”.
+- Boot: servicio se inicia tras reinicio si estaba activo.
 
 Pendiente/Futuros:
-- Persistir estado de carrera si el proceso es matado (rehidratación desde Room).
+- Migraciones reales (sin fallback destructivo).
+- Repos/UseCases formales y ViewModels para Stats/Historial/Config; extracción completa de lógica a Domain/UseCase.
 - Heatmap/predicción de tráfico y alertas.
 - Backup nube/local, detalle de historial con mapa, emergencia externa, always-on screen.

@@ -10,14 +10,18 @@ import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.carrerastaxi.R
-import com.example.carrerastaxi.utils.Prefs
+import com.example.carrerastaxi.managers.AppSession
+import com.example.carrerastaxi.ui.viewmodels.ConfigViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class ConfigFragment : Fragment() {
+    private val vm: ConfigViewModel by viewModels()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_config, container, false)
         val etBase = v.findViewById<EditText>(R.id.etTarifaBase)
@@ -35,49 +39,52 @@ class ConfigFragment : Fragment() {
         val tvEstadoJornada = v.findViewById<TextView>(R.id.tvEstadoJornada)
         val btnReset = v.findViewById<Button>(R.id.btnReiniciarJornada)
 
-        val cfg = Prefs.load(requireContext())
-        etBase.setText(cfg.base.toString())
-        etKm.setText(cfg.km.toString())
-        etMin.setText(cfg.min.toString())
-        etGas.setText(cfg.gas.toString())
-        etKml.setText(cfg.kmPerL.toString())
-        swSound.isChecked = cfg.sound
-        swVibra.isChecked = cfg.vibra
-        swAuto.isChecked = cfg.autoStart
-        etMeta.setText(cfg.goal.toString())
-        tvEstadoJornada.text = if (cfg.journeyActive) "Jornada: Activa" else "Jornada: Inactiva"
+        vm.ui.observe(viewLifecycleOwner) { cfg ->
+            etBase.setText(cfg.base.toString())
+            etKm.setText(cfg.km.toString())
+            etMin.setText(cfg.min.toString())
+            etGas.setText(cfg.gas.toString())
+            etKml.setText(cfg.kml.toString())
+            swSound.isChecked = cfg.sound
+            swVibra.isChecked = cfg.vibra
+            swAuto.isChecked = cfg.auto
+            etMeta.setText(cfg.goal.toString())
+            tvEstadoJornada.text = if (cfg.journeyActive) "Jornada: Activa" else "Jornada: Inactiva"
+        }
+        vm.load()
 
         btnSave.setOnClickListener {
-            val base = etBase.text.toString().toDoubleOrNull() ?: 7.0
-            val km = etKm.text.toString().toDoubleOrNull() ?: 5.0
-            val min = etMin.text.toString().toDoubleOrNull() ?: 1.0
-            val gas = etGas.text.toString().toDoubleOrNull() ?: 7.0
-            val kml = etKml.text.toString().toDoubleOrNull() ?: 10.0
-            val meta = etMeta.text.toString().toDoubleOrNull() ?: 300.0
-            Prefs.saveTariffs(requireContext(), base, km, min)
-            Prefs.saveFuel(requireContext(), gas, kml)
-            Prefs.saveToggles(requireContext(), swSound.isChecked, swVibra.isChecked)
-            Prefs.saveAutoStart(requireContext(), swAuto.isChecked)
-            Prefs.saveGoal(requireContext(), meta)
+            val state = ConfigViewModel.UiState(
+                base = etBase.text.toString().toDoubleOrNull() ?: 7.0,
+                km = etKm.text.toString().toDoubleOrNull() ?: 5.0,
+                min = etMin.text.toString().toDoubleOrNull() ?: 1.0,
+                gas = etGas.text.toString().toDoubleOrNull() ?: 7.0,
+                kml = etKml.text.toString().toDoubleOrNull() ?: 10.0,
+                sound = swSound.isChecked,
+                vibra = swVibra.isChecked,
+                auto = swAuto.isChecked,
+                goal = etMeta.text.toString().toDoubleOrNull() ?: 300.0,
+                journeyActive = vm.ui.value?.journeyActive ?: true
+            )
+            vm.save(state)
             Toast.makeText(requireContext(), "Configuración guardada", Toast.LENGTH_SHORT).show()
         }
 
         btnIniciarJornada.setOnClickListener {
-            com.example.carrerastaxi.managers.AppSession.tripManager.startJourney(System.currentTimeMillis())
-            Prefs.saveJourneyActive(requireContext(), true)
+            AppSession.tripManager.startJourney(System.currentTimeMillis())
+            vm.updateJourney(true)
             tvEstadoJornada.text = "Jornada: Activa"
             Toast.makeText(requireContext(), "Jornada iniciada", Toast.LENGTH_SHORT).show()
         }
 
         btnFinalizarJornada.setOnClickListener {
-            val tm = com.example.carrerastaxi.managers.AppSession.tripManager
+            val tm = AppSession.tripManager
             val snap = tm.endJourney(System.currentTimeMillis())
-            Prefs.saveJourneyActive(requireContext(), false)
+            vm.updateJourney(false)
             tvEstadoJornada.text = "Jornada: Inactiva"
-            // Guardar snapshot diario
             viewLifecycleOwner.lifecycleScope.launch {
                 withContext(Dispatchers.IO) {
-                    val (liters, fuelCost) = com.example.carrerastaxi.managers.FuelManager(cfg.kmPerL, cfg.gas).fuelCost(snap.totalKm)
+                    val (liters, fuelCost) = com.example.carrerastaxi.managers.FuelManager(vm.ui.value?.kml ?: 10.0, vm.ui.value?.gas ?: 7.0).fuelCost(snap.totalKm)
                     val net = snap.gross - fuelCost
                     com.example.carrerastaxi.data.AppDatabase.getDatabase(requireContext()).dailyStatsDao().upsert(
                         com.example.carrerastaxi.data.DailyStatsEntity(

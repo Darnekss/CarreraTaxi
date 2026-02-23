@@ -35,6 +35,8 @@ class TripManager {
     private var pricePerKm = 5.0
     private var pricePerMin = 1.0
     private var baseFare = 7.0
+    private var kmPerLiter = 10.0
+    private var fuelPrice = 7.0
     private var lastStopAccum = 0L
     private var prevActiveState: TripState = TripState.LIBRE
 
@@ -84,6 +86,12 @@ class TripManager {
         baseFare = base
         pricePerKm = perKm
         pricePerMin = perMin
+    }
+
+    fun setProfile(profile: com.example.carrerastaxi.domain.model.VehicleProfile) {
+        setTariffs(profile.baseFare, profile.pricePerKm, profile.pricePerMin)
+        kmPerLiter = profile.kmPerLiter
+        fuelPrice = profile.fuelPrice
     }
 
     fun onLocation(point: LocationPoint) {
@@ -172,6 +180,48 @@ class TripManager {
         )
     }
 
+    fun toSession(lastLat: Double, lastLon: Double): SessionSnapshot {
+        return SessionSnapshot(
+            journeyActive = journeyState == JourneyState.ACTIVE,
+            tripState = tripState,
+            totalMeters = totalMetersDay,
+            metersWithPassenger = metersWithPassenger,
+            metersWithoutPassenger = metersWithoutPassenger,
+            secondsTotal = secondsDay,
+            secondsWithPassenger = secondsWithPassenger,
+            secondsWithoutPassenger = secondsWithoutPassenger,
+            secondsStopped = secondsStopped,
+            secondsMoving = secondsMoving,
+            earnings = earnings,
+            earningsDistance = earningsDistance,
+            earningsTime = earningsTime,
+            tripMeters = tripMeters,
+            tripSeconds = tripSeconds,
+            tripEarnings = tripEarnings,
+            lastLat = lastLat,
+            lastLon = lastLon
+        )
+    }
+
+    fun restoreFrom(session: SessionSnapshot) {
+        journeyState = if (session.journeyActive) JourneyState.ACTIVE else JourneyState.INACTIVE
+        tripState = session.tripState
+        totalMetersDay = session.totalMeters
+        metersWithPassenger = session.metersWithPassenger
+        metersWithoutPassenger = session.metersWithoutPassenger
+        secondsDay = session.secondsTotal
+        secondsWithPassenger = session.secondsWithPassenger
+        secondsWithoutPassenger = session.secondsWithoutPassenger
+        secondsStopped = session.secondsStopped
+        secondsMoving = session.secondsMoving
+        earnings = session.earnings
+        earningsDistance = session.earningsDistance
+        earningsTime = session.earningsTime
+        tripMeters = session.tripMeters
+        tripSeconds = session.tripSeconds
+        tripEarnings = session.tripEarnings
+    }
+
     fun tripState(): TripState = tripState
     fun journeyActive(): Boolean = journeyState == JourneyState.ACTIVE
     fun currentTripMeters(): Double = tripMeters
@@ -221,4 +271,25 @@ class TripManager {
     )
 
     private enum class SpeedState { DETENIDO, TRAFICO, MOVIMIENTO }
+
+    data class SessionSnapshot(
+        val journeyActive: Boolean,
+        val tripState: TripState,
+        val totalMeters: Double,
+        val metersWithPassenger: Double,
+        val metersWithoutPassenger: Double,
+        val secondsTotal: Long,
+        val secondsWithPassenger: Long,
+        val secondsWithoutPassenger: Long,
+        val secondsStopped: Long,
+        val secondsMoving: Long,
+        val earnings: Double,
+        val earningsDistance: Double,
+        val earningsTime: Double,
+        val tripMeters: Double,
+        val tripSeconds: Long,
+        val tripEarnings: Double,
+        val lastLat: Double,
+        val lastLon: Double
+    )
 }
